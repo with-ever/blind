@@ -14,3 +14,12 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+
+// web project
+//configure([project(':web.admin.platform'), project(':web.admin.partner'), project(':web.admin.service'), project(':web.api'), project(':web.api.ariel'), project(':interface'), project(':web.readyshop')]) {
+//    apply plugin: 'war'
+//    distZip.enabled = false
+//    distTar.enabled = false
+//    jar.enabled =false
+//}
