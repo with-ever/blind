@@ -24,10 +24,6 @@ repositories {
     mavenCentral()
 }
 
-configurations {
-    providedRuntime
-}
-
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-security')
     implementation('org.springframework.boot:spring-boot-starter-web')
@@ -35,5 +31,7 @@ dependencies {
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')
+
     compile project(':common')
+    providedRuntime "org.apache.tomcat.embed:tomcat-embed-jasper:9.0.0.M21"
 }
