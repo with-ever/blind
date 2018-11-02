@@ -1,4 +1,4 @@
-package kr.withever.withcash.api;
+package kr.withever.withcash.admin;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
