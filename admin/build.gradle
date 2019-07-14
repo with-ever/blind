@@ -1,5 +1,5 @@
 war {
-    baseName = "withcash.admin"
+    baseName = "blind.admin"
     version = '0.0.1-SNAPSHOT'
     destinationDir file("target")
 }

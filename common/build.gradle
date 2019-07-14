@@ -1,6 +1,6 @@
 //apply plugin: 'com.ewerk.gradle.plugins.querydsl'
 jar {
-    baseName = 'withcash.common'
+    baseName = 'blind.common'
     version = '0.0.1-SNAPSHOT'
 }
 

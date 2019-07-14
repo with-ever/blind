@@ -1,4 +1,4 @@
-package kr.withever.withcash.member;
+package kr.withever.blind.member;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package kr.withever.withcash.advertisement;
+package kr.withever.blind.advertisement;
 
 import lombok.Getter;
 import lombok.Setter;

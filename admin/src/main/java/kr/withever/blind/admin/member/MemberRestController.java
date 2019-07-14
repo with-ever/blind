@@ -1,6 +1,6 @@
-package kr.withever.withcash.admin.member;
+package kr.withever.blind.admin.member;
 
-import kr.withever.withcash.member.Member;
+import kr.withever.blind.member.Member;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

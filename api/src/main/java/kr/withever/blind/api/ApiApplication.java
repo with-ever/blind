@@ -1,4 +1,4 @@
-package kr.withever.withcash.api;
+package kr.withever.blind.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

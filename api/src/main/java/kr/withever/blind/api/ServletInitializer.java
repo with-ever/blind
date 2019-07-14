@@ -1,4 +1,4 @@
-package kr.withever.withcash.api;
+package kr.withever.blind.api;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
