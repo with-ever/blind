@@ -3,8 +3,52 @@ spring:
     view:
       prefix: /WEB-INF/view/
       suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.161.142.98:13306/NCP_DEV?autoReconnect=true
+    username: ncp_dev
+    password: WkaQhd@629!!dev
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#        format_sql: true
+#        physical_naming_strategy: com.ncp.common.hibernate.CamelCaseColumnStrategy
+#        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+#        use_sql_comments: true
+#        show_seq: true
+#    database: mysql
+#    database-platform: MYSQL
+#    open-in-view: false
+#    show-sql: false
+#    generate-ddl: false
+
 server:
   error:
     whitelabel:
       enabled: false
+
+#mybatis:
+#  #  config-location: classpath:mybatis-config.xml
+#  check-config-location: true
+#  mapper-locations: classpath*:mapper/**/*.xml
+#  type-aliases-package: classpath*:com/ncp/**/*.class
+#  type-handlers-package: com.ncp.common.mybatis.typehandler.time
+#  configuration:
+#    interceptors: com.ncp.common.mybatis.plugins.EncryptPlugin
+#    cache-enabled: true
+#    lazy-loading-enabled: true
+#    multiple-result-sets-enabled: true
+#    use-column-label: true
+#    use-generated-keys: false
+#    auto-mapping-behavior: PARTIAL
+#    default-executor-type: SIMPLE
+#    default-statement-timeout: 200
+#    safe-row-bounds-enabled: false
+#    map-underscore-to-camel-case: true
+#    local-cache-scope: SESSION
+#    jdbc-type-for-null: OTHER
+#    call-setters-on-nulls: true
 
