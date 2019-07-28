@@ -1,5 +1,6 @@
-package kr.withever.blind.api;
+package kr.withever.blind;
 
+import kr.withever.blind.ApiApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

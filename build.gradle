@@ -18,8 +18,6 @@ allprojects {
         jcenter()
         mavenCentral().artifactUrls("http://repository.jboss.org/nexus/content/groups/public-jboss")
         maven { url "http://repo1.maven.org/maven2/" }
-        maven { url "http://nexus.nhnent.com/content/groups/public" }
-        maven { url "http://nexus.nhnent.com/content/repositories/releases/" }
         maven { url "https://repo.spring.io/libs-release" }
         maven { url "https://repo.spring.io/libs-milestone" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
@@ -35,16 +33,12 @@ allprojects {
         compile "javax.xml.bind:jaxb-api:2.2.+"
         //롬복 설정
         compile "org.projectlombok:lombok:1.18.2"
-
-        testCompile "org.springframework.boot:spring-boot-starter-test"
-        testCompile "org.springframework.boot:spring-boot-starter-web"
     }
 }
 
-configure([project(':api'), project(':admin')]) {
+configure([project('api'), project('admin')]) {
     apply plugin: 'war'
     jar.enabled = false
 }
 
 bootJar.enabled = false
-

@@ -1,12 +1,10 @@
 package kr.withever.blind.member.service;
 
+import kr.withever.blind.member.entity.Member;
+import kr.withever.blind.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import kr.withever.blind.member.entity.Member;
-import kr.withever.blind.member.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author youngjin.kim

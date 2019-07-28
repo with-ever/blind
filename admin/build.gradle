@@ -11,11 +11,12 @@ ext {
 bootWar.enabled=true
 war.enabled=true
 
-//sourceSets.main {
-//    resources {
-//        srcDir "src/main/resources-env/dev"
-//    }
-//}
+sourceSets.main {
+    resources {
+        srcDir "src/main/resources-env/dev"
+    }
+}
+
 dependencies {
     compile project(':common')
 

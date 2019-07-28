@@ -1,13 +1,12 @@
-package kr.withever.blind.admin;
+package kr.withever.blind;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AdminApplication {
+public class ApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AdminApplication.class, args);
+        SpringApplication.run(ApiApplication.class, args);
     }
 }

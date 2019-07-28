@@ -1,5 +1,6 @@
-package kr.withever.blind.admin;
+package kr.withever.blind;
 
+import kr.withever.blind.AdminApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
