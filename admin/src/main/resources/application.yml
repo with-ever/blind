@@ -5,9 +5,12 @@ spring:
       suffix: .jsp
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://10.161.142.98:13306/NCP_DEV?autoReconnect=true
-    username: ncp_dev
-    password: WkaQhd@629!!dev
+#    url: jdbc:mysql://10.161.142.98:13306/NCP_DEV?autoReconnect=true  e
+#    username: ncp_dev
+#    password: WkaQhd@629!!dev
+    url: jdbc:mysql://localhost:3306/db_example
+    username: springuser
+    password: ThePassword
   jpa:
     hibernate:
       ddl-auto: none
