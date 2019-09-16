@@ -1,11 +1,8 @@
 package kr.withever.blind.admin.post;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.withever.blind.post.entity.Post;
@@ -21,10 +18,14 @@ public class PostRestController {
 
     @Autowired
     private PostRepository postRepository;
-
-    @GetMapping("/findValue")
-    public List<Post> getMember(@RequestParam(value = "findValue") String findValue) {
-        List<Post> post = postRepository.findPostByContentAndTitle(findValue);
+    
+    //검색(제목+내용)
+    @PutMapping("/savePost")
+    public Post savePost(Post post) {
+        postRepository.save(post);
         return post;
     }
+    
+    
+    
 }

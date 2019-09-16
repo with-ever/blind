@@ -1,7 +1,5 @@
 package kr.withever.blind.post.service;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -14,8 +12,8 @@ import kr.withever.blind.post.repository.PostRepository;
 
 
 /**
- * @author youngjin.kim
- * @since 2019-07-25
+ * @author jsg
+ * @since 2019-09-16
  */
 @Service
 public class PostService {
@@ -26,8 +24,8 @@ public class PostService {
     @PersistenceContext
     private EntityManager entityManager;
 
-//    @Transactional(readOnly = true)
-//    public Post getFindPost(String findData) {
-//        return postRepository.findPostByContentAndTitle(findData);
-//    }
+    @Transactional(readOnly = true)
+    public Post savePost(Post post) {
+        return postRepository.save(post);
+    }
 }

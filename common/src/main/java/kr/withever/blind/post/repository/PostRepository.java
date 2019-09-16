@@ -10,10 +10,15 @@ import kr.withever.blind.post.entity.Post;
 
 /**
  * @author jsg
- * @since 2019-07-25
+ * @since 2019-09-16
  */
 public interface PostRepository extends CrudRepository<Post, Long> {
 	
+	//검색(제목+내용)
 	@Query(value = "select * from post where title like CONCAT('%',:findValue,'%') or content like CONCAT('%',:findValue,'%') ", nativeQuery = true)
-    List<Post> findPostByContentAndTitle(@Param("findValue") String findValue);
+    public List<Post> findPostByContentAndTitle(@Param("findValue") String findValue);
+	
+	//저장
+	
+	public Post save(Post post);
 }
