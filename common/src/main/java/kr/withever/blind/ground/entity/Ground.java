@@ -1,4 +1,4 @@
-package kr.withever.blind.member.entity;
+package kr.withever.blind.ground.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,13 +6,17 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "comm_member")
+@Table(name = "gr_ground")
 @Getter
 @Setter
-public class Member {
+public class Ground {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long memberNo;
+    private int groundNo;
+
     private String name;
+
+
+
 }
