@@ -25,7 +25,7 @@ spring:
 #    database: mysql
 #    database-platform: MYSQL
 #    open-in-view: false
-#    show-sql: false
+    show-sql: true
 #    generate-ddl: false
 
 server:

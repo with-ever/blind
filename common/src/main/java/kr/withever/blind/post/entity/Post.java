@@ -22,7 +22,7 @@ import lombok.Data;
 @DynamicInsert
 public class Post {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int postSeq;
     
     @Column(nullable = false)
@@ -34,16 +34,16 @@ public class Post {
     @Column(nullable = true)
     private String content;
     
-//    @Column(nullable = true)
-//    private Integer viewCnt;
-//    
-//    @Column(nullable = true)
-//    private Integer likeCnt;
-//    
-    @CreatedDate // Entity »ý¼º½Ã ÀÚµ¿À¸·Î ³¯Â¥¼¼ÆÃ
+    @Column(nullable = true)
+    private int viewCnt;
+    
+    @Column(nullable = true)
+    private int likeCnt;
+        
+    @CreatedDate // Entity ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½
     private LocalDateTime regDate;
     
-    @LastModifiedDate // Entity ¼öÁ¤½Ã ÀÚµ¿À¸·Î ³¯Â¥¼¼ÆÃ
+    @LastModifiedDate // Entity ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½
     private LocalDateTime modDate;
     
     
@@ -68,8 +68,8 @@ public class Post {
 		this.boardId = boardId;
 		this.title = title;
 		this.content = content;
-//		this.viewCnt = viewCnt;
-//		this.likeCnt = likeCnt;
+		this.viewCnt = viewCnt;
+		this.likeCnt = likeCnt;
 		this.regId = regId;
 		this.regNm = regNm;
 		this.imageUrl = imageUrl;

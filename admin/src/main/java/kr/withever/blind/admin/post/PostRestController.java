@@ -19,10 +19,13 @@ public class PostRestController {
     @Autowired
     private PostRepository postRepository;
     
-    //°Ë»ö(Á¦¸ñ+³»¿ë)
+    //ï¿½Ë»ï¿½(ï¿½ï¿½ï¿½ï¿½+ï¿½ï¿½ï¿½ï¿½)
     @PutMapping("/savePost")
     public Post savePost(Post post) {
+    	System.out.println(post.getLikeCnt());
+    	System.out.println(post.getViewCnt());
         postRepository.save(post);
+        
         return post;
     }
     

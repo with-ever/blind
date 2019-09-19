@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.lang.NonNull;
 
 import kr.withever.blind.post.entity.Post;
 
@@ -14,11 +15,11 @@ import kr.withever.blind.post.entity.Post;
  */
 public interface PostRepository extends CrudRepository<Post, Long> {
 	
-	//°Ë»ö(Á¦¸ñ+³»¿ë)
+	//ï¿½Ë»ï¿½(ï¿½ï¿½ï¿½ï¿½+ï¿½ï¿½ï¿½ï¿½)
 	@Query(value = "select * from post where title like CONCAT('%',:findValue,'%') or content like CONCAT('%',:findValue,'%') ", nativeQuery = true)
     public List<Post> findPostByContentAndTitle(@Param("findValue") String findValue);
 	
-	//ÀúÀå
-	
+	//ï¿½ï¿½ï¿½ï¿½
+	@NonNull
 	public Post save(Post post);
 }
