@@ -22,7 +22,6 @@ public class MemberRestController {
     @GetMapping("/{memberNo}")
     public Member getMember(@PathVariable long memberNo) {
         Member member = memberRepository.findByMemberNo(memberNo);
-        System.out.println(member.getName());
         return member;
     }
 }

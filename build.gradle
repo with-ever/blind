@@ -33,6 +33,7 @@ allprojects {
 //        compile "javax.xml.bind:jaxb-api:2.2.+"
         compileOnly 'org.projectlombok:lombok:1.18.2'
         annotationProcessor 'org.projectlombok:lombok:1.18.2'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 }
 
