@@ -1,5 +1,7 @@
 package kr.withever.blind.post.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -27,5 +29,13 @@ public class PostService {
     @Transactional(readOnly = true)
     public Post savePost(Post post) {
         return postRepository.save(post);
+    }
+    
+    public List<Post> findAll(){
+    	return postRepository.findAll();
+    }
+    
+    public List<Post> findPost(String findVlaue){
+    	return postRepository.findPostByContentAndTitle(findVlaue);
     }
 }

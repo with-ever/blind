@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -61,7 +60,11 @@ public class Post {
     
     @Column(nullable = true)
     private String imageUrl;
-
+    
+    public Post() {
+		super();
+	}
+    
 	public Post(String boardId, String title, String content, int viewCnt, int likeCnt, String regId, String regNm,
 			String imageUrl) {
 		super();
@@ -83,6 +86,8 @@ public class Post {
 		return this;
 		
 	}
+
+	
     
 //    private String findValue;
     
