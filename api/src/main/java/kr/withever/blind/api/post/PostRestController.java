@@ -34,7 +34,7 @@ public class PostRestController {
     
     //새글 저장
     //http://localhost:8080/post/savePost?boardId=0000002&title=2312314&content=콘텐츠으&regId=jsg&regNm=주상곤&viewCnt=0&likeCnt=0
-    @ApiOperation(value = "저장 api", notes = "포스트 글 등록", httpMethod = "Put", response = Post.class, produces = "application/json")
+    @ApiOperation(value = "저장 api", notes = "포스트 글 등록", httpMethod = "PUT", response = Post.class, produces = "application/json")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 404, message = "호출 에러"),
         				    @ApiResponse(code = 500, message = "저장중 오류 발생") })
     @ApiImplicitParams({
@@ -64,7 +64,7 @@ public class PostRestController {
     
     //포스트 목록
     //http://localhost:8080/post/postList
-    @ApiOperation(value = "포스트 목록", notes = "회원이 로그인하여 회원이 선택한 탭의 글목록", httpMethod = "Get", response = Post.class ,responseContainer="List" , produces = "application/json")
+    @ApiOperation(value = "포스트 목록", notes = "회원이 로그인하여 회원이 선택한 탭의 글목록", httpMethod = "GET", response = Post.class ,responseContainer="List" , produces = "application/json")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 404, message = "호출 에러"),
         				    @ApiResponse(code = 500, message = "오류 발생") })
     @GetMapping("/{groundSeq}")
@@ -74,7 +74,7 @@ public class PostRestController {
     
     
     //포스트 상세 
-    @ApiOperation(value = "포스트 상세", notes = "글 상세", httpMethod = "Get", response = Post.class, produces = "application/json")
+    @ApiOperation(value = "포스트 상세", notes = "글 상세", httpMethod = "GET", response = Post.class, produces = "application/json")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 404, message = "호출 에러"),
         				    @ApiResponse(code = 500, message = "오류 발생") })
     @GetMapping("/{postNo}")
@@ -83,7 +83,7 @@ public class PostRestController {
     }
     
     //포스트 댓글 등록
-    @ApiOperation(value = "포스트 상세", notes = "글 상세", httpMethod = "Get", response = Post.class, produces = "application/json")
+    @ApiOperation(value = "포스트 상세", notes = "글 상세", httpMethod = "GET", response = Post.class, produces = "application/json")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 404, message = "호출 에러"),
         				    @ApiResponse(code = 500, message = "오류 발생") })
     @PutMapping("/commentSave")
