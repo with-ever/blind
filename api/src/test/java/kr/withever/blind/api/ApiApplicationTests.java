@@ -1,4 +1,4 @@
-package kr.withever.blind.admin;
+package kr.withever.blind.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

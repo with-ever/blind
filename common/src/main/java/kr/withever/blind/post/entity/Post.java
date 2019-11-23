@@ -22,14 +22,17 @@ import lombok.Data;
 public class Post {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int postSeq;
+    private int postNo;
     
-    @Column(nullable = false)
-    private String boardId;
+    @Column(nullable = true)
+    private String upPostNo;
+    
+    @Column(nullable = true)
+    private String groundNo;
     
     @Column(nullable = true)
     private String title;
-    
+
     @Column(nullable = true)
     private String content;
     
@@ -45,52 +48,13 @@ public class Post {
     @LastModifiedDate // Entity ������ �ڵ����� ��¥����
     private LocalDateTime modDate;
     
-    
-    @Column(nullable = true)
-    private String regId;
-    
-    @Column(nullable = true)
-    private String regNm;
-    
-    @Column(nullable = true)
-    private String modId;
-    
-    @Column(nullable = true)
-    private String modNm;
-    
     @Column(nullable = true)
     private String imageUrl;
+    
+    @Column(nullable = true)
+    private String useyN;
     
     public Post() {
 		super();
 	}
-    
-	public Post(String boardId, String title, String content, int viewCnt, int likeCnt, String regId, String regNm,
-			String imageUrl) {
-		super();
-		this.boardId = boardId;
-		this.title = title;
-		this.content = content;
-		this.viewCnt = viewCnt;
-		this.likeCnt = likeCnt;
-		this.regId = regId;
-		this.regNm = regNm;
-		this.imageUrl = imageUrl;
-	}
-	
-	public Post setUpdate(String title, String content,String modId,  String modNm) {
-		this.title = title;
-		this.content = content;
-		this.modId = modId;
-		this.modNm = modNm;
-		return this;
-		
-	}
-
-	
-    
-//    private String findValue;
-    
-    
-    
 }

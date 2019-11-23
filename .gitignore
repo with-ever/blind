@@ -36,6 +36,7 @@ RCSLOG
 SCCS
 _$#
 _svn
+.yml
 svn-commit*.tmp
 
 ### Windows ###
