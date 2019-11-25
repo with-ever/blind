@@ -1,14 +1,17 @@
 package kr.withever.blind.member.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
 import kr.withever.blind.member.entity.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 
 /**
- * @author youngjin.kim
- * @since 2019-07-25
+ * @author hs85699104@gmail.com
+ * @since 2019-11-23
  */
-public interface MemberRepository extends CrudRepository<Member, Long> {
 
-    Member findByMemberNo(long memberNo);
+@Repository
+public interface MemberRepository extends JpaRepository<Member, Long> {
+
+  Member findByPassword(Long memberNo);
 }

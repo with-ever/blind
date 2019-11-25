@@ -1,77 +1,120 @@
 package kr.withever.blind.api.member;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import java.util.Map;
+import java.util.Optional;
+import kr.withever.blind.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import kr.withever.blind.member.entity.Member;
-import kr.withever.blind.member.repository.MemberRepository;
+
 /**
- * @author youngjin.kim@nhnent.com
- * @since 2018-11-02
+ * @author hs85699104@gmail.com
+ * @since 2019-11-23
  */
-@Api(value = "/member",description = "회원 api")
+@Api(value = "/member", description = "회원 api")
 @RestController
 @RequestMapping("/member")
 public class MemberRestController {
 
-    @Autowired
-    private MemberRepository memberRepository;
+  @Autowired
+  MemberService memberService;
 
-    //회원번호 정보 조회
-    @GetMapping("/{memberNo}")
-    public Member getMember(@PathVariable long memberNo) {
-//        Member member = memberRepository.findByMemberNo(memberNo);
+  //회원 조회
+  @ApiOperation(value = "회원 조회", notes = "회원 번호(memberNo)를 이용한 회원 조회", httpMethod = "GET", response = Member.class, produces = "application/json")
+  @ApiImplicitParams({
+      @ApiImplicitParam(name = "memberNo", value = "회원 번호", required = true, dataType = "long", paramType = "path")
+  })
+  @GetMapping("/retrieve/{memberNo}")
+  public @ResponseBody
+  Member retrieveMember(@PathVariable("memberNo") Long memberNo) {
+    return this.memberService.retrieveMember(memberNo).get();
+  }
 
-    	return null;
-    }
-    
-    //회원 로그인
-    @GetMapping("/login")
-    public void memberLogin(Member member) {
-        System.out.println("sdf");
-    }
-    
-    
-    //회원 정보 수정 및 탈퇴시 y / n
-    @PostMapping("/infoUpdate")
-    public void memberInfoUpdate(Member member) {
-    }
- 
+  //회원 생성
+  @ApiOperation(value = "회원 생성", notes = "회원 생성", httpMethod = "POST", response = Member.class, produces = "application/json")
+  @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
+      @ApiResponse(code = 404, message = "호출 에러"),
+      @ApiResponse(code = 500, message = "저장 오류 발생")})
+  @PostMapping("/create")
+  public @ResponseBody
+  Long createMember(@RequestBody Member member) {
+    return memberService.createMember(member);
 
-    //회원가입
-    @PutMapping("/join")
-    public void memberJoin(Member member) {
-    	
+  }
+
+  //회원 수정, 탈퇴
+  @ApiOperation(value = "회원 수정", notes = "회원 수정", httpMethod = "PUT", response = Member.class, produces = "application/json")
+  @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
+      @ApiResponse(code = 404, message = "호출 에러"),
+      @ApiResponse(code = 500, message = "저장 중 오류 발생")})
+  @ApiImplicitParams({
+      @ApiImplicitParam(name = "memberNo", value = "회원 번호", required = true, dataType = "long", paramType = "path")
+  })
+  @PutMapping("/modify/{memberNo}")
+  public @ResponseBody
+  Long modifyMember(@RequestBody Member member) {
+    return memberService.modifyMember(member);
+  }
+
+
+  //비밀번호 변경
+  @ApiOperation(value = "비밀번호 변경", notes = "비밀번호 변경", httpMethod = "PUT", response = Boolean.class, produces = "application/json")
+  @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
+      @ApiResponse(code = 404, message = "호출 에러"),
+      @ApiResponse(code = 500, message = "저장중 오류 발생")})
+  @ApiImplicitParams({
+      @ApiImplicitParam(name = "memberNo", value = "회원 번호", required = true, dataType = "long", paramType = "path")
+  })
+  @PutMapping("/modifyPassword/{memberNo}")
+  public @ResponseBody
+  boolean modifyMemberPassword(@PathVariable Long memberNo,
+      @RequestBody Map<String, Object> requestParam) {
+
+    boolean result = true;
+
+    String password = (String) requestParam.get("password");
+    String newPassword = (String) requestParam.get("newPassword");
+
+    Member member = this.memberService.retrieveMember(memberNo).get();
+
+    if(!member.getPassword().equals(password)){
+      return result = false;
     }
 
-    //이메일 인증 신청
-    @GetMapping("/{email}")
-    public void memberEmailAuthRequest(@PathVariable String email) {
-    	//메일 보내고 사용자가 인증 버튼 누르면
-    	//업데이트 된다.
-    }
-    
-    
-    //북마크 알림 등록
-    @PutMapping("/registBookmarkAlram")
-    public void registBookmarkOrAlram() {
+    member.setPassword(newPassword);
 
-    }
-    
-    
-    //북마크한 목록 조회
-    @GetMapping("/bookmark/{memberNo}")
-    public void bookmarkList() {
-    	
-    }
-    
-    
-    
-    
+    this.memberService.modifyMemberPassword(member);
+
+    return result;
+  }
+
+  // 비밀번호 찾기
+  @ApiOperation(value = "비밀번호 찾기", notes = "비밀번호 찾기", httpMethod = "GET", response = Member.class, produces = "application/json")
+  @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
+      @ApiResponse(code = 404, message = "호출 에러"),
+      @ApiResponse(code = 500, message = "저장중 오류 발생")})
+  @ApiImplicitParams({
+      @ApiImplicitParam(name = "memberNo", value = "회원 번호", required = true, dataType = "long", paramType = "path")
+  })
+  @GetMapping("/retrievePassword/{memberNo}")
+  public @ResponseBody
+  String retrievePasswordByMember(@PathVariable("memberNo") Long memberNo) {
+    return memberService.retrievePasswordByMember(memberNo);
+
+  }
 }
