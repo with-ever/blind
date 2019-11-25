@@ -92,7 +92,7 @@ public class MemberRestController {
 
     Member member = this.memberService.retrieveMember(memberNo).get();
 
-    if(!member.getPassword().equals(password)){
+    if (!member.getPassword().equals(password)) {
       return result = false;
     }
 
