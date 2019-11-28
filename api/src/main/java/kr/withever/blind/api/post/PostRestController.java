@@ -29,18 +29,20 @@ public class PostRestController {
 
   @Autowired
   private PostService postService;
+  public static final int MemberNo = 000001;
 
   // 새글 저장
   // http://localhost:8080/post/savePost?boardId=0000002&title=2312314&content=콘텐츠으&regId=jsg&regNm=주상곤&viewCnt=0&likeCnt=0
-  @ApiOperation(value = "저장 api", notes = "포스트 글 등록", httpMethod = "PUT", response = Map.class,
+  @ApiOperation(value = "저장 api", notes = "포스트 글 등록", httpMethod = "POST", response = Map.class,
       produces = "application/json")
   @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
       @ApiResponse(code = 404, message = "호출 에러"), @ApiResponse(code = 500, message = "저장중 오류 발생")})
-  @PutMapping("/savePost")
+  @PostMapping("/savePost")
   public Map<String, Object> savePost(@RequestBody Post post) {
     Map<String, Object> rtnMap = new HashMap<String, Object>();
+    post.setMemberNo(MemberNo);
     try {
-      //postService.savePost(post);
+      postService.savePost(post);
       rtnMap.put("code", "200");
       rtnMap.put("message", "저장성공");
     } catch (Exception e) {
@@ -55,29 +57,48 @@ public class PostRestController {
    */
   // 포스트검색
   // http://localhost:8080/post/findPost?findValue=저장
-  @GetMapping("/findPost")
-  public List<Post> findPost(String findValue) {
-    return postService.findPost(findValue);
+  @GetMapping("/findPost/{findValue}")
+  public Map<String, Object> findPost(@PathVariable String findValue) {
+    Map<String, Object> rtnMap = new HashMap<String, Object>();
+    try {
+      List<Post> list = postService.findPost(findValue);
+      rtnMap.put("list", list);
+      rtnMap.put("code", "200");
+      rtnMap.put("message", "조회성공");
+    } catch (Exception e) {
+      rtnMap.put("code", "500");
+      rtnMap.put("message", "조회실패");
+    }
+    
+    return rtnMap;
   }
 
   // 포스트 목록
   // http://localhost:8080/post/postList
   @ApiOperation(value = "포스트 목록", notes = "회원이 로그인하여 회원이 선택한 탭의 글목록", httpMethod = "GET",
-      response = Post.class, responseContainer = "List", produces = "application/json")
+      response = Map.class, produces = "application/json")
   @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
       @ApiResponse(code = 404, message = "호출 에러"), @ApiResponse(code = 500, message = "오류 발생")})
-  @GetMapping("/{groundSeq}")
-  public List<Post> selectedGroundPostList(@PathVariable String groundSeq) {
-    return null;
+  @GetMapping("/{groundNo}")
+  public Map<String, Object> selectedGroundPostList(@PathVariable int groundNo) {
+    Map<String, Object> rtnMap = new HashMap<String, Object>();
+    try {
+      List<Post> list = postService.findPostList(groundNo);
+      rtnMap.put("list", list);
+      rtnMap.put("code", "200");
+      rtnMap.put("message", "조회성공");
+    } catch (Exception e) {
+     
+    }
+    return rtnMap;
   }
-
 
   // 포스트 상세
   @ApiOperation(value = "포스트 상세", notes = "글 상세", httpMethod = "GET", response = Post.class,
       produces = "application/json")
   @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
       @ApiResponse(code = 404, message = "호출 에러"), @ApiResponse(code = 500, message = "오류 발생")})
-  @GetMapping("/{postNo}")
+  @GetMapping("/detail/{postNo}")
   public Post selectedPostDetail(@PathVariable String postNo) {
     return null;
   }
