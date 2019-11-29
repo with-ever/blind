@@ -3,11 +3,9 @@ package kr.withever.blind.api.member;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.Map;
-import java.util.Optional;
 import kr.withever.blind.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,10 +37,10 @@ public class MemberRestController {
   @ApiImplicitParams({
       @ApiImplicitParam(name = "memberNo", value = "회원 번호", required = true, dataType = "long", paramType = "path")
   })
-  @GetMapping("/retrieve/{memberNo}")
+  @GetMapping("/{memberNo}")
   public @ResponseBody
   Member retrieveMember(@PathVariable("memberNo") Long memberNo) {
-    return this.memberService.retrieveMember(memberNo).get();
+    return this.memberService.retrieveMember(memberNo);
   }
 
   //회원 생성
@@ -50,7 +48,7 @@ public class MemberRestController {
   @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
       @ApiResponse(code = 404, message = "호출 에러"),
       @ApiResponse(code = 500, message = "저장 오류 발생")})
-  @PostMapping("/create")
+  @PostMapping
   public @ResponseBody
   Long createMember(@RequestBody Member member) {
     return memberService.createMember(member);
@@ -90,7 +88,7 @@ public class MemberRestController {
     String password = (String) requestParam.get("password");
     String newPassword = (String) requestParam.get("newPassword");
 
-    Member member = this.memberService.retrieveMember(memberNo).get();
+    Member member = this.memberService.retrieveMember(memberNo);
 
     if (!member.getPassword().equals(password)) {
       return result = false;
