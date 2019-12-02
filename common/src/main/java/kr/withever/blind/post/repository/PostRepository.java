@@ -30,4 +30,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
   public List<Post> findByGroundNoAndUpPostNoAndUseYn(int groundNo, int upPostNo, String useYn);
 
+  public Post findByPostNo(int postNo);
+
 }

@@ -69,7 +69,7 @@ public class PostRestController {
       rtnMap.put("code", "500");
       rtnMap.put("message", "조회실패");
     }
-    
+
     return rtnMap;
   }
 
@@ -88,7 +88,8 @@ public class PostRestController {
       rtnMap.put("code", "200");
       rtnMap.put("message", "조회성공");
     } catch (Exception e) {
-     
+      rtnMap.put("code", "500");
+      rtnMap.put("message", "조회실패");
     }
     return rtnMap;
   }
@@ -99,24 +100,18 @@ public class PostRestController {
   @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
       @ApiResponse(code = 404, message = "호출 에러"), @ApiResponse(code = 500, message = "오류 발생")})
   @GetMapping("/detail/{postNo}")
-  public Post selectedPostDetail(@PathVariable String postNo) {
-    return null;
-  }
-
-  // 포스트 댓글 등록
-  @ApiOperation(value = "포스트 상세", notes = "글 상세", httpMethod = "GET", response = Post.class,
-      produces = "application/json")
-  @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
-      @ApiResponse(code = 404, message = "호출 에러"), @ApiResponse(code = 500, message = "오류 발생")})
-  @PutMapping("/commentSave")
-  public void commnetSave(Post post) {
-
-  }
-
-  // 포스트 댓글 수정
-  @PostMapping("/commentMod")
-  public void commnetModify(Post post) {
-
+  public Map<String, Object> selectedPostDetail(@PathVariable int postNo) {
+    Map<String, Object> rtnMap = new HashMap<String, Object>();
+    try {
+      Post data = postService.postDetail(postNo);
+      rtnMap.put("data", data);
+      rtnMap.put("code", "200");
+      rtnMap.put("message", "조회성공");
+    } catch (Exception e) {
+      rtnMap.put("code", "500");
+      rtnMap.put("message", "조회실패");
+    }
+    return rtnMap;
   }
 
   // 포스트 신고

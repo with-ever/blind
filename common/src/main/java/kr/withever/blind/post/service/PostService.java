@@ -42,4 +42,9 @@ public class PostService {
   public List<Post> findPostList(int groundNo) {
     return postRepository.findByGroundNoAndUpPostNoAndUseYn(groundNo, 0, "Y");
   }
+
+  public Post postDetail(int postNo) {
+    // TODO Auto-generated method stub
+    return postRepository.findByPostNo(postNo);
+  }
 }
