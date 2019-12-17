@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +16,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import kr.withever.blind.post.entity.Post;
 import kr.withever.blind.post.service.PostService;
+import kr.withever.blind.report.entity.Report;
 
 /**
  * @author jsg
@@ -95,7 +95,7 @@ public class PostRestController {
   }
 
   // 포스트 상세
-  @ApiOperation(value = "포스트 상세", notes = "글 상세", httpMethod = "GET", response = Post.class,
+  @ApiOperation(value = "포스트 상세", notes = "글 상세", httpMethod = "GET", response = Map.class,
       produces = "application/json")
   @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
       @ApiResponse(code = 404, message = "호출 에러"), @ApiResponse(code = 500, message = "오류 발생")})
@@ -115,9 +115,29 @@ public class PostRestController {
   }
 
   // 포스트 신고
-  @PostMapping("/reportPost")
-  public void reporPost() {
-
+  // http://localhost:8080/post/savePost?boardId=0000002&title=2312314&content=콘텐츠으&regId=jsg&regNm=주상곤&viewCnt=0&likeCnt=0
+  @ApiOperation(value = "포스트 신고 api", notes = "포스트 신고", httpMethod = "GET", response = Map.class,
+      produces = "application/json")
+  @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"),
+      @ApiResponse(code = 404, message = "호출 에러"), @ApiResponse(code = 500, message = "저장중 오류 발생")})
+  @GetMapping("/report/{postNo}/{reportContent}")
+  public Map<String, Object> reportPost(@PathVariable int postNo,@PathVariable String reportContent) {
+    Map<String, Object> rtnMap = new HashMap<String, Object>();
+    try {
+      Report report = new Report();
+      report.setReportId(MemberNo);
+      report.setPostNo(postNo);
+      report.setReportContent(reportContent);
+      postService.reportPost(report);
+      
+      
+      rtnMap.put("code", "200");
+      rtnMap.put("message", "저장성공");
+    } catch (Exception e) {
+      rtnMap.put("code", "500");
+      rtnMap.put("message", "저장실패");
+    }
+    return rtnMap;
   }
 
 }

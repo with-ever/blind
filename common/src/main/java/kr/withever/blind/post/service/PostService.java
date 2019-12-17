@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import kr.withever.blind.post.entity.Post;
 import kr.withever.blind.post.repository.PostRepository;
+import kr.withever.blind.report.entity.Report;
+import kr.withever.blind.report.repository.ReportRepository;
 
 
 /**
@@ -20,6 +22,9 @@ public class PostService {
   @Autowired
   private PostRepository postRepository;
 
+  @Autowired
+  private ReportRepository reportRepository;
+  
   @PersistenceContext
   private EntityManager entityManager;
 
@@ -46,5 +51,10 @@ public class PostService {
   public Post postDetail(int postNo) {
     // TODO Auto-generated method stub
     return postRepository.findByPostNo(postNo);
+  }
+
+  public Report reportPost(Report report) {
+    return reportRepository.save(report);
+    
   }
 }
