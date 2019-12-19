@@ -17,8 +17,8 @@ public class MemberService {
   MemberRepository memberRepository;
 
   // 회원 검색
-  public Optional<Member> retrieveMember(Long memberNo) {
-    return memberRepository.findById(memberNo);
+  public Member retrieveMember(Long memberNo) {
+    return memberRepository.findById(memberNo).get();
   }
 
   // 회원 추가
