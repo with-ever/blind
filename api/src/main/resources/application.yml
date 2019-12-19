@@ -1,0 +1,36 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://10.161.142.98:13306/NCP_DEV?autoReconnect=true  e
+#    username: ncp_dev
+#    password: WkaQhd@629!!dev
+    url: jdbc:mysql://localhost:3306/ground
+    username: root
+    password: qwer1234
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#        format_sql: true
+#        physical_naming_strategy: com.ncp.common.hibernate.CamelCaseColumnStrategy
+#        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+#        use_sql_comments: true
+#        show_seq: true
+#    database: mysql
+#    database-platform: MYSQL
+#    open-in-view: false
+    show-sql: true
+#    generate-ddl: false
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+

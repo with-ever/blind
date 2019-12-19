@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/member")
 public class MemberRestController {
 
-    @Autowired
-    private MemberRepository memberRepository;
+  @Autowired
+  private MemberRepository memberRepository;
 
-    @GetMapping("/{memberNo}")
-    public Member getMember(@PathVariable long memberNo) {
-        Member member = memberRepository.findByMemberNo(memberNo);
-        return member;
-    }
+  @GetMapping("/{memberNo}")
+  public Member getMember(@PathVariable long memberNo) {
+    return null;
+  }
 }
