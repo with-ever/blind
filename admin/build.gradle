@@ -26,4 +26,6 @@ dependencies {
 //    compile "org.springframework.security.oauth:spring-security-oauth2"
 
     compile "org.apache.tomcat.embed:tomcat-embed-jasper"
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
 }
